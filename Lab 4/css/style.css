@@ -1,0 +1,95 @@
+/* CCT360 Lab 4 — The Baking Studio
+   Mobile-first CSS Grid + Flexbox implementation */
+:root {
+  --cream: #fffbf8;
+  --blush: #fff0f3;
+  --rose: #c77992;
+  --mauve: #765766;
+  --border: #e7d7dd;
+  --muted: #897980;
+  --white: #ffffff;
+  --shadow: 0 8px 24px rgba(118, 87, 102, .06);
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--mauve); font-family: Arial, Helvetica, sans-serif; line-height: 1.55; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Flexbox: navigation header and footer */
+.site-header { display: flex; justify-content: space-between; background: var(--cream); border-bottom: 1px solid var(--border); }
+.header-inner { width: min(100%, 1440px); margin: 0 auto; padding: 16px 20px 12px; }
+.brand-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.brand { font-size: 1.05rem; font-weight: 800; letter-spacing: .025em; }
+.brand-icon { width: 30px; height: 30px; }
+.search-bar { margin: 14px 0 10px; display: flex; align-items: center; gap: 10px; padding: 7px 9px 7px 13px; border: 1px solid #dfc7d0; border-radius: 12px; background: var(--white); color: var(--rose); }
+.search-bar input { background: transparent; border: 0; outline: none; min-width: 0; flex: 1; color: var(--mauve); font-size: .86rem; }
+.search-bar input::placeholder { color: #a18b94; }
+.search-bar button { border: 0; border-radius: 8px; background: var(--blush); padding: 7px 10px; color: var(--mauve); font-weight: 700; font-size: .75rem; cursor: pointer; }
+.main-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: .86rem; }
+.main-nav a { padding: 5px 0; }
+.main-nav a:hover, .site-footer a:hover { color: var(--rose); }
+
+.container { width: min(100% - 40px, 1280px); margin: 0 auto; }
+/* Mobile first: all grid containers have one column below 768px */
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 25px; }
+.spotlight, .quick-info { padding: 28px 24px; border: 1px solid var(--border); border-radius: 12px; }
+.spotlight { background: var(--blush); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.eyebrow { display: block; color: var(--rose); font-weight: 800; font-size: .69rem; letter-spacing: .11em; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { font-size: clamp(2rem, 8vw, 3.4rem); line-height: 1.13; margin: 14px 0; letter-spacing: -.035em; }
+.spotlight p { max-width: 590px; font-size: 1rem; color: #806a74; margin-bottom: 24px; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 18px; background: var(--rose); color: var(--white); border-radius: 7px; font-size: .82rem; font-weight: 700; padding: 12px 19px; transition: background .2s, transform .2s; }
+.button:hover { background: #ad5f7b; transform: translateY(-2px); }
+.quick-info { background: #faf4f2; }
+.quick-info h2 { font-size: 1.34rem; line-height: 1.3; margin: 12px 0; }
+.quick-info p { color: var(--muted); font-size: .91rem; }
+.divider { height: 1px; background: var(--border); margin: 18px 0; }
+.quick-info h3 { font-size: .75rem; letter-spacing: .1em; margin-bottom: 12px; }
+.quick-info a { display: flex; justify-content: space-between; padding: 5px 0; font-size: .87rem; }
+
+.workshops-section { padding: 44px 0 54px; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 15px; margin-bottom: 22px; }
+.section-heading h2, .recipes-banner h2 { margin: 5px 0; line-height: 1.2; font-size: clamp(1.5rem, 4.4vw, 2rem); }
+.section-heading p { font-size: .89rem; margin-bottom: 0; color: var(--muted); }
+.section-tag { display: none; font-size: .8rem; color: var(--rose); white-space: nowrap; }
+.cards-gallery { display: grid; grid-template-columns: 1fr; gap: 22px; }
+/* Flexbox inside cards ensures all action buttons align at the bottom */
+.card { display: flex; flex-direction: column; min-width: 0; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 12px; box-shadow: var(--shadow); }
+.card-image { aspect-ratio: 16 / 9; background: var(--blush); border-radius: 8px; overflow: hidden; }
+.card-image img { width: 100%; height: 100%; object-fit: cover; }
+.card-content { display: flex; flex-direction: column; flex: 1; padding: 17px 6px 6px; }
+.card-category { color: var(--rose); font-size: .66rem; font-weight: 800; letter-spacing: .12em; }
+.card h3 { margin: 6px 0 8px; font-size: 1.23rem; }
+.card p { color: var(--muted); font-size: .89rem; line-height: 1.65; margin-bottom: 18px; }
+.card-button { margin-top: auto; align-self: flex-start; }
+.no-results { padding: 18px; background: var(--blush); border-radius: 8px; }
+.recipes-banner { margin: 0 0 52px; border: 1px solid var(--border); border-radius: 12px; background: var(--blush); padding: 28px; display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.recipes-banner p { margin: 7px 0 0; max-width: 680px; font-size: .91rem; color: var(--muted); }
+.button-outline { background: var(--white); color: var(--mauve); border: 1px solid var(--border); }
+.button-outline:hover { background: #fce4eb; }
+.site-footer { display: flex; justify-content: space-between; background: var(--mauve); color: var(--white); }
+.footer-inner { width: min(100% - 40px, 1280px); margin: 0 auto; padding: 22px 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.footer-inner p { margin: 0; font-size: .81rem; }
+.footer-inner nav { display: flex; gap: 20px; font-size: .81rem; }
+
+/* All multi-column desktop grid rules are contained in this media query. */
+@media (min-width: 768px) {
+  .header-inner { padding: 18px 5.55% 12px; }
+  .brand { font-size: 1.35rem; }
+  .search-bar { margin: 14px 0 8px; }
+  .search-bar input { font-size: .97rem; }
+  .main-nav { font-size: .94rem; }
+  .hero-grid { grid-template-columns: 2fr 1fr; gap: 24px; margin-top: 36px; }
+  .spotlight { padding: 48px; }
+  .quick-info { padding: 34px; }
+  .cards-gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+  .section-tag { display: inline; }
+  .recipes-banner { flex-direction: row; align-items: center; justify-content: space-between; gap: 35px; padding: 32px 40px; }
+  .footer-inner { flex-direction: row; align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button { transition: none; } }
